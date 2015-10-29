@@ -1,0 +1,95 @@
+﻿
+html, body {
+    overflow: hidden;
+    background: black;
+    color: white;
+}
+
+#title {
+    color: #3c3c3c;
+    font-family: "Segoe UI", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 2rem;
+    text-align:center;
+}
+
+
+a {
+    color: #3c3c3c; 
+    text-decoration: underline;
+    font-family: "Segoe UI", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+
+
+.logowrapper {
+    position: absolute;
+    top: 0px;
+    left:50%;
+    margin-top: 20px;
+    margin-left:-125px;
+}
+    .logowrapper img {
+    width: 250px;
+    }
+
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    perspective: 483px;
+}
+
+.footerwrapper {
+    position: absolute;
+    bottom: 0px;
+    left:50%;
+    margin-left:-125px;
+    color: #3c3c3c;
+    font-family: "Segoe UI", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    text-align:center;
+}
+
+#dots {
+    color: #3c3c3c;
+    margin: 20px;
+    font-family: "Segoe UI", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    width: 250px;
+    margin: 10px;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.footertext {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* controls the circle size */
+@keyframes spin {
+    from {
+        opacity: 0.0;
+    }
+
+    to {
+        opacity: 0.6;
+        transform: translate3d(-4px, -4px, 470px);
+    }
+}
+/* controls the circle size */
+
+/* controls the spiral colour */
+i {
+    display: block;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    opacity: 0;
+    box-shadow: 0px 0px 10px;
+    animation-name: spin;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+/* controls the spiral colour */

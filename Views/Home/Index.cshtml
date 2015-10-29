@@ -1,0 +1,171 @@
+﻿@model sentimentR_frontend.Models.homeViewModels
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="@Model.RefreshFrequency" />
+    <meta charset="utf-8" />
+    <title>@Model.Title</title>
+
+    <link href="~/Content/base.css" rel="stylesheet" />
+    <link href="~/Content/animation.css" rel="stylesheet" />
+
+    <style>
+        i {
+            background: @Model.Background;
+            box-shadow: 0px 0px 10px @Model.Box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logowrapper">
+
+        <img id="logo" src="~/Content/MSFT_logo_rgb_C-Gray.png" />
+        <div id="title">
+            <a style="" href="https://twitter.com/search?f=tweets&q=@Model.Title.Replace("#", "%23")">@Model.Title</a>
+            @if (Model.ShowScore)
+            {<small> @Model.Score</small>}
+        </div>
+
+    </div>
+
+    <div class="footerwrapper">
+        @if (Model.ShowDots)
+        {
+            <div id="dots"></div>
+        }
+        <div class="footertext"><a href="http://blogs.technet.com/b/amykatenicho/archive/2015/09/07/the-current-level-of-reasonsto-happiness.aspx">How does this work?</a></div>
+    </div>
+
+
+    <div class='wrapper'>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+    </div>
+
+    <script language="text/javascript">
+        //Feature detect for Windows
+        if (typeof Windows != 'undefined') {
+            var notifications = Windows.UI.Notifications;
+
+            // Get the toast notification manager for the current app.
+            var notificationManager = notifications.ToastNotificationManager;
+
+            // The getTemplateContent method returns a Windows.Data.Xml.Dom.XmlDocument object that contains the toast notification XML content.
+            var template = notifications.ToastTemplateType.toastText01;
+            var toastXml = notificationManager.getTemplateContent(notifications.ToastTemplateType[template]);
+
+            // Set text
+            var toastTextElements = toastXml.getElementsByTagName("text");
+            toastTextElements[0].appendChild(toastXml.createTextNode("You got a sentiment score of " +@Model.Score));
+
+            // Set image
+            var toastImageElements = toastXml.getElementsByTagName("image");
+            toastImageElements[0].setAttribute("src", "ms-appx:///images/smalllogo.png");
+            toastImageElements[0].setAttribute("alt", "App logo");
+
+            // Create a toast notification from the XML, then create a ToastNotifier object to send the toast.
+            var toast = new notifications.ToastNotification(toastXml);
+            notificationManager.createToastNotifier().show(toast);
+
+        }
+    </script>
+
+    <script>
+        var dots = document.getElementById('dots');
+
+        //write a dot for each second of the refresh interval
+        for (i = 0; i < @Model.RefreshFrequency; i++) { 
+            WriteDot();
+        }
+
+        //remove a dot every second
+        var counter=setInterval(RemoveDot, 1000); //1000 will  run it every 1 second
+
+        function WriteDot()
+        {
+            var dot = document.createElement('span');
+            dot.innerHTML = ".";
+            dots.appendChild(dot);
+        }
+
+        function RemoveDot()
+        {
+            dots.removeChild(dots.childNodes[0]);
+        }
+    </script>
+
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67272439-1', 'auto');
+  ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>
